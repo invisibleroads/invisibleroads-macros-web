@@ -11,6 +11,12 @@ APP_CLASSIFIERS = [
 APP_REQUIREMENTS = [
     'invisibleroads-macros-process',
 ]
+FASTAPI_REQUIREMENTS = [
+    'fastapi',
+]
+JINJA_REQUIREMENTS = [
+    'jinja2',
+]
 MARKDOWN_REQUIREMENTS = [
     'markdown',
 ]
@@ -25,7 +31,7 @@ DESCRIPTION = '\n\n'.join(open(join(FOLDER, x)).read().strip() for x in [
 
 setup(
     name='invisibleroads-macros-web',
-    version='0.1.0',
+    version='0.2.0',
     description='Shortcut functions for web operations',
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
@@ -41,6 +47,8 @@ setup(
     zip_safe=True,
     install_requires=APP_REQUIREMENTS,
     extras_require={
+        'fastapi': FASTAPI_REQUIREMENTS,
+        'jinja': JINJA_REQUIREMENTS,
         'markdown': MARKDOWN_REQUIREMENTS,
         'test': TEST_REQUIREMENTS,
     },
