@@ -3,35 +3,34 @@ from os.path import dirname, getmtime, join, normpath, realpath
 from jinja2 import BaseLoader, Environment, TemplateNotFound, pass_context
 
 
-class DictionaryTemplateLoader(BaseLoader):
+class PathTemplateLoader(BaseLoader):
 
-    def __init__(self, template_path_by_id, encoding='utf-8'):
-        self.template_path_by_id = template_path_by_id
+    def __init__(self, encoding='utf-8'):
         self.encoding = encoding
 
     def get_source(self, environment, template):
-        path = str(self.template_path_by_id[template])
         try:
-            modification_time = getmtime(path)
-        except OSError:
-            raise TemplateNotFound(path)
+            modification_time = getmtime(template)
+        except (OSError, TypeError):
+            raise TemplateNotFound(template)
 
         def is_latest():
             try:
-                return modification_time == getmtime(path)
+                return modification_time == getmtime(template)
             except OSError:
                 return False
 
-        with open(path, mode='rt', encoding=self.encoding) as f:
+        with open(template, mode='rt', encoding=self.encoding) as f:
             text = f.read()
-        return text, realpath(path), is_latest
+        return text, realpath(template), is_latest
 
 
 class RelativeTemplateEnvironment(Environment):
 
     def join_path(self, template, parent):
         'Support relative template paths via extends, import, include'
-        return normpath(join(dirname(parent), template))
+        return normpath(join(dirname(
+            parent), template)) if template else template
 
 
 @pass_context
