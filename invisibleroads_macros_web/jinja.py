@@ -9,6 +9,7 @@ class PathTemplateLoader(BaseLoader):
         self.encoding = encoding
 
     def get_source(self, environment, template):
+        'Support absolute template paths'
         try:
             modification_time = getmtime(template)
         except (OSError, TypeError):
