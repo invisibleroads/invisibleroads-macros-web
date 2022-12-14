@@ -7,4 +7,6 @@ def get_html_from_markdown(text):
     if '<p>' not in clipped_html and '</p>' not in clipped_html:
         html = html.removeprefix('<p>')
         html = html.removesuffix('</p>')
+    html = html.replace('<p><', '<')
+    html = html.replace('></p>', '>')
     return html
