@@ -9,3 +9,5 @@ def test_get_html_from_markdown():
     assert html.startswith('<p>') and html.endswith('</p>')
     html = get_html_from_markdown('x\n\n<button></button>\n\nx')
     assert '<p><button></button></p>' not in html
+    html = get_html_from_markdown('x\n\n<button></button>\n\n<a></a>.')
+    assert '<p><a></a>.</p>' in html
