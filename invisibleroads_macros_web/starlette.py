@@ -15,7 +15,7 @@ class ExtraResponseHeadersMiddleware:
         async def send_with_extra_headers(message):
             if message['type'] == 'http.response.start':
                 headers = MutableHeaders(scope=message)
-                for key, value in self.headers:
+                for key, value in self.headers.items():
                     headers.append(key, value)
 
             await send(message)
