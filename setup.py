@@ -4,28 +4,8 @@ from setuptools import find_packages, setup
 
 ENTRY_POINTS = '''
 '''
-APP_CLASSIFIERS = [
-    'Programming Language :: Python',
-    'License :: OSI Approved :: MIT License',
-]
-APP_REQUIREMENTS = [
-    'invisibleroads-macros-process',
-]
-FASTAPI_REQUIREMENTS = [
-    'fastapi',
-]
-JINJA_REQUIREMENTS = [
-    'jinja2',
-]
-MARKDOWN_REQUIREMENTS = [
-    'markdown',
-]
-TEST_REQUIREMENTS = [
-    'pytest',
-    'pytest-cov',
-]
 FOLDER = dirname(abspath(__file__))
-DESCRIPTION = '\n\n'.join(open(join(FOLDER, x)).read().strip() for x in [
+DESCRIPTION = '\n\n'.join(open(join(FOLDER, _)).read().strip() for _ in [
     'README.md', 'CHANGES.md'])
 
 
@@ -35,7 +15,10 @@ setup(
     description='Shortcut functions for web operations',
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
-    classifiers=APP_CLASSIFIERS,
+    classifiers=[
+        'Programming Language :: Python',
+        'License :: OSI Approved :: MIT License',
+    ],
     author='Roy Hyunjin Han',
     author_email='rhh@crosscompute.com',
     url=(
@@ -45,11 +28,11 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=True,
-    install_requires=APP_REQUIREMENTS,
+    install_requires=['invisibleroads-macros-process'],
     extras_require={
-        'fastapi': FASTAPI_REQUIREMENTS,
-        'jinja': JINJA_REQUIREMENTS,
-        'markdown': MARKDOWN_REQUIREMENTS,
-        'test': TEST_REQUIREMENTS,
+        'jinja': ['jinja2'],
+        'markdown': ['markdown'],
+        'starlette': ['starlette'],
+        'test': ['pytest', 'pytest-cov'],
     },
     entry_points=ENTRY_POINTS)
