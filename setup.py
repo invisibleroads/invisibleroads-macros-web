@@ -4,6 +4,13 @@ from setuptools import find_packages, setup
 
 ENTRY_POINTS = '''
 '''
+APP_REQUIREMENTS = [
+    'invisibleroads-macros-disk>=1.2.2',
+    'invisibleroads-macros-process>=0.1.1'],
+JINJA_REQUIREMENTS = ['jinja2']
+MARKDOWN_REQUIREMENTS = ['markdown']
+STARLETTE_REQUIREMENTS = ['starlette']
+TEST_REQUIREMENTS = ['pytest', 'pytest-cov']
 FOLDER = dirname(abspath(__file__))
 DESCRIPTION = '\n\n'.join(open(join(FOLDER, _)).read().strip() for _ in [
     'README.md', 'CHANGES.md'])
@@ -28,11 +35,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=True,
-    install_requires=['invisibleroads-macros-process'],
+    install_requires=APP_REQUIREMENTS,
     extras_require={
-        'jinja': ['jinja2'],
-        'markdown': ['markdown'],
-        'starlette': ['starlette'],
-        'test': ['pytest', 'pytest-cov'],
-    },
+        'jinja': JINJA_REQUIREMENTS,
+        'markdown': MARKDOWN_REQUIREMENTS,
+        'starlette': STARLETTE_REQUIREMENTS,
+        'test': TEST_REQUIREMENTS},
     entry_points=ENTRY_POINTS)

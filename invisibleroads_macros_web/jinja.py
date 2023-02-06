@@ -1,5 +1,6 @@
 from os.path import dirname, getmtime, join, normpath, realpath
 
+from invisibleroads_macros_disk import get_asset_path
 from jinja2 import BaseLoader, Environment, TemplateNotFound, pass_context
 
 
@@ -30,6 +31,7 @@ class RelativeTemplateEnvironment(Environment):
 
     def join_path(self, template, parent):
         'Support relative template paths via extends, import, include'
+        template = get_asset_path(template)
         return normpath(join(dirname(
             parent), template)) if template else template
 
