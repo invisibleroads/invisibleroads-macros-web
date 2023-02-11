@@ -25,6 +25,7 @@ class ExtraResponseHeadersMiddleware:
 
 class TemplateResponseFactory(Jinja2Templates):
 
-    def __init__(self, environment):
+    def __init__(self, environment, context_processors=None):
         'Assume nothing about the template environment'
         self.env = environment
+        self.context_processors = context_processors or []
