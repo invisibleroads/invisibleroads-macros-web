@@ -5,10 +5,10 @@ from setuptools import find_packages, setup
 ENTRY_POINTS = '''
 '''
 APP_REQUIREMENTS = [
-    'invisibleroads-macros-disk>=1.2.2',
-    'invisibleroads-macros-process>=0.1.1'],
+    'invisibleroads-macros-disk>=1.3.0',
+    'invisibleroads-macros-process>=0.2.0'],
 JINJA_REQUIREMENTS = ['jinja2']
-MARKDOWN_REQUIREMENTS = ['markdown']
+MARKDOWN_REQUIREMENTS = ['markdown2[all]']
 STARLETTE_REQUIREMENTS = ['starlette']
 TEST_REQUIREMENTS = ['pytest', 'pytest-cov']
 FOLDER = dirname(abspath(__file__))
@@ -18,7 +18,7 @@ DESCRIPTION = '\n\n'.join(open(join(FOLDER, _)).read().strip() for _ in [
 
 setup(
     name='invisibleroads-macros-web',
-    version='0.2.4',
+    version='0.3.0',
     description='Shortcut functions for web operations',
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
