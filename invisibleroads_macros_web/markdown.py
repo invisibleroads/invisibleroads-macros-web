@@ -21,7 +21,7 @@ EXTRAS = [
 
 
 def get_html_from_markdown(text, extras=EXTRAS):
-    html = markdown(text, extras=extras)
+    html = markdown(text, extras=extras).strip()
     match = SINGLE_PARAGRAPH_PATTERN.match(html)
     if match:
         html = match.group(1)
