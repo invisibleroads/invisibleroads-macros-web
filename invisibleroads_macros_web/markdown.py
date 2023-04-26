@@ -11,7 +11,6 @@ EXTRAS = [
     'cuddled-lists',
     'fenced-code-blocks',
     'footnotes',
-    'header-ids',
     'markdown-in-html',
     'strike',
     'target-blank-links',

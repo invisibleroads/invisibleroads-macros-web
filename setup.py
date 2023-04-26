@@ -18,7 +18,7 @@ DESCRIPTION = '\n\n'.join(open(join(FOLDER, _)).read().strip() for _ in [
 
 setup(
     name='invisibleroads-macros-web',
-    version='0.3.0',
+    version='0.3.1',
     description='Shortcut functions for web operations',
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
