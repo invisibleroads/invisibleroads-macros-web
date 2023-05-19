@@ -23,3 +23,5 @@ def test_remove_parent_paragraphs():
     html = remove_parent_paragraphs(
         '<p>x</p><p><div>\n<a></a>\n</div></p><p>x</p>')
     assert html == '<p>x</p><div>\n<a></a>\n</div><p>x</p>'
+    html = remove_parent_paragraphs('<p><strong>\n</strong></p>')
+    assert html == '<p><strong>\n</strong></p>'

@@ -4,6 +4,8 @@ from markdown2 import markdown
 
 
 SINGLE_PARAGRAPH_PATTERN = re.compile(r'^<p>((?:(?!<p>).)*)</p>$', re.DOTALL)
+PARENT_PARAGRAPH_START_PATTERN = re.compile(r'<p>(<(?:button|div))')
+PARENT_PARAGRAPH_END_PATTERN = re.compile(r'((?:button|div)>)</p>')
 EXTRAS = [
     'break-on-newline',
     'code-friendly',
@@ -27,4 +29,6 @@ def remove_single_paragraph(html):
 
 
 def remove_parent_paragraphs(html):
-    return html.replace('<p><', '<').replace('></p>', '>')
+    html = PARENT_PARAGRAPH_START_PATTERN.sub(r'\g<1>', html)
+    html = PARENT_PARAGRAPH_END_PATTERN.sub(r'\g<1>', html)
+    return html
