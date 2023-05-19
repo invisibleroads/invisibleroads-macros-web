@@ -10,8 +10,8 @@ def test_get_html_from_markdown():
 
 
 def test_remove_single_paragraph():
-    html = remove_single_paragraph('<p>x</p>')
-    assert html == 'x'
+    html = remove_single_paragraph('<p>x\ny</p>')
+    assert html == 'x\ny'
     html = remove_single_paragraph('<p>x</p><p>y</p>')
     assert html == '<p>x</p><p>y</p>'
 

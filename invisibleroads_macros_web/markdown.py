@@ -3,7 +3,7 @@ import re
 from markdown2 import markdown
 
 
-SINGLE_PARAGRAPH_PATTERN = re.compile(r'^<p>((?:(?!<p>).)*)</p>$')
+SINGLE_PARAGRAPH_PATTERN = re.compile(r'^<p>((?:(?!<p>).)*)</p>$', re.DOTALL)
 EXTRAS = [
     'break-on-newline',
     'code-friendly',
