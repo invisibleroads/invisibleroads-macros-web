@@ -1,13 +1,25 @@
 from invisibleroads_macros_web.markdown import (
-    get_html_from_markdown)
+    get_html_from_markdown,
+    remove_parent_paragraphs,
+    remove_single_paragraph)
 
 
 def test_get_html_from_markdown():
     html = get_html_from_markdown('x')
-    assert not html.startswith('<p>') and not html.endswith('</p>')
-    html = get_html_from_markdown('x\n\nx')
-    assert html.startswith('<p>') and html.endswith('</p>')
-    html = get_html_from_markdown('x\n\n<button></button>\n\nx')
-    assert '<p><button></button></p>' not in html
-    html = get_html_from_markdown('x\n\n<button></button>\n\n<a></a>.')
-    assert '<p><a></a>.</p>' in html
+    assert html == '<p>x</p>'
+
+
+def test_remove_single_paragraph():
+    html = remove_single_paragraph('<p>x</p>')
+    assert html == 'x'
+    html = remove_single_paragraph('<p>x</p><p>y</p>')
+    assert html == '<p>x</p><p>y</p>'
+
+
+def test_remove_parent_paragraphs():
+    html = remove_parent_paragraphs(
+        '<p>x</p><p><button>\n</button></p><p>x</p>')
+    assert html == '<p>x</p><button>\n</button><p>x</p>'
+    html = remove_parent_paragraphs(
+        '<p>x</p><p><div>\n<a></a>\n</div></p><p>x</p>')
+    assert html == '<p>x</p><div>\n<a></a>\n</div><p>x</p>'
