@@ -1,3 +1,7 @@
+# 0.3
+
+- Add `remove_single_paragraph`, `remove_parent_paragraphs`
+
 # 0.2
 - Add `TemplateResponseFactory`
 - Add `RelativeTemplateEnvironment`, `TemplatePathLoader`
