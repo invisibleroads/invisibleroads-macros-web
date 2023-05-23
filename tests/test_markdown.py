@@ -20,8 +20,7 @@ def test_remove_parent_paragraphs():
     html = remove_parent_paragraphs(
         '<p>x</p><p><button>\n</button></p><p>x</p>')
     assert html == '<p>x</p><button>\n</button><p>x</p>'
-    html = remove_parent_paragraphs(
-        '<p>x</p><p><div>\n<a></a>\n</div></p><p>x</p>')
-    assert html == '<p>x</p><div>\n<a></a>\n</div><p>x</p>'
-    html = remove_parent_paragraphs('<p><strong>\n</strong></p>')
-    assert html == '<p><strong>\n</strong></p>'
+    html = remove_parent_paragraphs('<p><span>\n</span></p>', tags=[])
+    assert html == '<p><span>\n</span></p>'
+    html = remove_parent_paragraphs('<p><span>\n</span></p>', tags=['span'])
+    assert html == '<span>\n</span>'

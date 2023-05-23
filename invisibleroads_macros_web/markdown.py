@@ -4,8 +4,6 @@ from markdown2 import markdown
 
 
 SINGLE_PARAGRAPH_PATTERN = re.compile(r'^<p>((?:(?!<p>).)*)</p>$', re.DOTALL)
-PARENT_PARAGRAPH_START_PATTERN = re.compile(r'<p>(<(?:button|div))')
-PARENT_PARAGRAPH_END_PATTERN = re.compile(r'((?:button|div)>)</p>')
 EXTRAS = [
     'break-on-newline',
     'code-friendly',
@@ -18,6 +16,10 @@ EXTRAS = [
     'tables',
     'use-file-vars',
     'task_list']
+TAGS = [
+    'button',
+    'div',
+    'span']
 
 
 def get_html_from_markdown(text, extras=EXTRAS):
@@ -28,7 +30,9 @@ def remove_single_paragraph(html):
     return SINGLE_PARAGRAPH_PATTERN.sub(r'\g<1>', html)
 
 
-def remove_parent_paragraphs(html):
-    html = PARENT_PARAGRAPH_START_PATTERN.sub(r'\g<1>', html)
-    html = PARENT_PARAGRAPH_END_PATTERN.sub(r'\g<1>', html)
+def remove_parent_paragraphs(html, tags=TAGS):
+    if tags:
+        tags_text = '|'.join(tags)
+        html = re.sub(r'<p>(<(?:%s))' % tags_text, r'\g<1>', html)
+        html = re.sub(r'((?:%s)>)</p>' % tags_text, r'\g<1>', html)
     return html
