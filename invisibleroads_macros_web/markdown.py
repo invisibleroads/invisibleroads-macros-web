@@ -17,6 +17,7 @@ EXTRAS = [
     'use-file-vars',
     'task_list']
 TAGS = [
+    'a',
     'button',
     'div',
     'span']
