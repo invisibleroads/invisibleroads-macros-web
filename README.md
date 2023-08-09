@@ -32,6 +32,7 @@ from invisibleroads_macros_web.markdown import (
 
 # Configure templates
 from invisibleroads_macros_web.jinja import (
+    AssetStorage,
     RelativeTemplateEnvironment,
     TemplatePathLoader,
     url_for)

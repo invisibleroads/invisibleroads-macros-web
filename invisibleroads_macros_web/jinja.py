@@ -1,7 +1,28 @@
 from os.path import dirname, getmtime, join, normpath, realpath
+from string import Template as StringTemplate
 
 from invisibleroads_macros_disk import get_asset_path
-from jinja2 import BaseLoader, Environment, TemplateNotFound, pass_context
+from jinja2 import (
+    BaseLoader,
+    Environment,
+    Template as JinjaTemplate,
+    TemplateNotFound,
+    pass_context)
+
+
+class AssetStorage():
+
+    def __init__(self, folder):
+        self.folder = folder
+
+    def load_raw_text(self, file_name):
+        return (self.folder / file_name).read_text().strip()
+
+    def load_string_text(self, file_name):
+        return StringTemplate(self.load_raw_text(file_name))
+
+    def load_jinja_text(self, file_name):
+        return JinjaTemplate(self.load_raw_text(file_name), trim_blocks=True)
 
 
 class PathTemplateLoader(BaseLoader):
