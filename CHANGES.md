@@ -1,5 +1,5 @@
 # 0.3
-
+- Add `AssetStorage`
 - Add `remove_single_paragraph`, `remove_parent_paragraphs`
 
 # 0.2
