@@ -6,8 +6,7 @@ from jinja2 import (
     BaseLoader,
     Environment,
     Template as JinjaTemplate,
-    TemplateNotFound,
-    pass_context)
+    TemplateNotFound)
 
 
 class AssetStorage():
@@ -55,8 +54,3 @@ class RelativeTemplateEnvironment(Environment):
         template = get_asset_path(template)
         return normpath(join(dirname(
             parent), template)) if template else template
-
-
-@pass_context
-def url_for(context, name, **d):
-    return context['request'].url_for(name, **d)

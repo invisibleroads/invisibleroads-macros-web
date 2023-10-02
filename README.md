@@ -34,8 +34,7 @@ from invisibleroads_macros_web.markdown import (
 from invisibleroads_macros_web.jinja import (
     AssetStorage,
     RelativeTemplateEnvironment,
-    TemplatePathLoader,
-    url_for)
+    TemplatePathLoader)
 from invisibleroads_macros_web.starlette import (
     TemplateResponseFactory)
 ```
